@@ -1,0 +1,9 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Astar/bin/Debug/net8.0
+/Astar/obj
+/AstarGUI/bin/Debug/net8.0-windows
+/AstarGUI/obj
