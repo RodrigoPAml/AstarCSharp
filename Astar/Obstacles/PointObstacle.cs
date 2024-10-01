@@ -1,7 +1,10 @@
-﻿namespace Astar
+﻿using Astar.Entities;
+using Astar.Interfaces;
+
+namespace Astar.Obstacles
 {
     /// <summary>
-    /// Obstaculo do tipo ponto
+    /// An obstacle of type point
     /// </summary>
     public class PointObstacle : IObstacle
     {

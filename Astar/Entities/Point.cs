@@ -1,7 +1,7 @@
-﻿namespace Astar
+﻿namespace Astar.Entities
 {
     /// <summary>
-    /// Ponto
+    /// Represents a point
     /// </summary>
     public class Point
     {
@@ -9,10 +9,10 @@
 
         public int Y { get; set; }
 
-        public Point(int x, int y) 
-        {  
-            X = x; 
-            Y = y; 
+        public Point(int x, int y)
+        {
+            X = x;
+            Y = y;
         }
 
         public override bool Equals(object obj)

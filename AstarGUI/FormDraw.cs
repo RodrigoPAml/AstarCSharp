@@ -1,9 +1,14 @@
 using Astar;
-using Microsoft.VisualBasic.Devices;
-using Point = Astar.Point;
+using Astar.Enums;
+using Astar.Interfaces;
+using Astar.Obstacles;
+using Point = Astar.Entities.Point;
 
 namespace AstarGUI
 {
+    /// <summary>
+    /// Form to draw astar iteractions
+    /// </summary>
     public partial class FormDraw : Form
     {
         private GridDrawer _drawer = null;

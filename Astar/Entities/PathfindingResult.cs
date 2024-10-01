@@ -1,29 +1,32 @@
-﻿namespace Astar
+﻿namespace Astar.Entities
 {
+    /// <summary>
+    /// The result of the path finding algorithm
+    /// </summary>
     public class PathfindingResult
     {
         /// <summary>
-        /// Caminho
+        /// The path from the initial to final node
         /// </summary>
         public List<Point> Path { get; set; } = new List<Point>();
 
         /// <summary>
-        /// Lista de nós visitados
+        /// Visited nodes
         /// </summary>
         public List<Point> ClosedNodes { get; set; } = new List<Point>();
 
         /// <summary>
-        /// Lista de nós a visitar
+        /// Nodes to visit
         /// </summary>
         public List<Point> OpenedNodes { get; set; } = new List<Point>();
 
         /// <summary>
-        /// Tempo de execução
+        /// Execution time
         /// </summary>
         public double TimeElapsed { get; set; } = 0;
 
         /// <summary>
-        /// Número de curvas
+        /// The number of curves of the best path founded
         /// </summary>
         public int Curves { get; set; } = 0;
     }

@@ -1,22 +1,43 @@
-﻿namespace Astar
+﻿using Astar.Entities;
+using Astar.Enums;
+using Astar.Interfaces;
+
+namespace Astar
 {
     /// <summary>
-    /// Implementa busca de caminho A*
+    /// A* path finding implementation
     /// </summary>
     public class Pathfinder
     {
+        /// <summary>
+        /// List of obstacles
+        /// </summary>
         public List<IObstacle> Obstacles { get; set; }
 
+        /// <summary>
+        /// The limits of search for the grid (max x, max y)
+        /// </summary>
         public Point Limits { get; set; }
 
+        /// <summary>
+        /// If the algorithm can use diagonal directions to search
+        /// </summary>
         public bool AllowDiagonalSearch { get; set; } = false;
 
+        /// <summary>
+        /// The penalty for turn/curve in paths
+        /// </summary>
         public double CurvesWeight { get; set; } = 0.0;
-
-        public DistanceTypeEnum DistanceType { get; set; } = DistanceTypeEnum.Manhattan;
-
         public bool HaveCurvePenalty => CurvesWeight > 0;
 
+        /// <summary>
+        /// The distance algorithm used for the heuristic
+        /// </summary>
+        public DistanceTypeEnum DistanceType { get; set; } = DistanceTypeEnum.Manhattan;
+
+        /// <summary>
+        /// Timer for execution time
+        /// </summary>
         private DateTime timer = DateTime.MinValue;
 
         public Pathfinder(List<IObstacle> obstacles, Point limits)
@@ -25,17 +46,23 @@
             Limits = limits;
         }
 
+        /// <summary>
+        /// Finds the path between initial and final points or return null if not finded
+        /// </summary>
+        /// <param name="initial"></param>
+        /// <param name="final"></param>
+        /// <returns></returns>
         public PathfindingResult? FindPath(Point initial, Point final)
         {
             timer = DateTime.UtcNow;
 
-            // Lista a serem visitados
+            // Nodes to be visited
             var openList = new List<Node>();
 
-            // Lista dos já visitados
+            // Visited nodes
             var closedList = new HashSet<Point>();
 
-            // Adiciona nó inicial
+            // Initial node
             openList.Add(new Node(initial, null, 0, GetDistance(initial, final), 0));
 
             while (openList.Count > 0)
@@ -45,23 +72,23 @@
                     .ThenBy(node => node.HCost)
                     .First();
 
-                // Aqui é quando chegou na posição final, retorna resultado com lista de pontos
+                // Reach final position, return the path
                 if (currentNode.Position.X == final.X && currentNode.Position.Y == final.Y)
                     return ReconstructPath(currentNode, openList, closedList);
 
                 openList.Remove(currentNode);
                 closedList.Add(currentNode.Position);
 
-                // Verificar os vizinhos
+                // Verify neighbors
                 foreach (var neighbor in GetNeighbors(currentNode.Position))
                 {
                     if (closedList.Any(p => neighbor.X == p.X && neighbor.Y == p.Y) || Obstacles.Any(o => o.Intersects(neighbor)))
                         continue;
 
-                    // Verifica se há mudança de direção (ou seja curva)
+                    // Verify if turned or have a curve in the path
                     bool changed = ChangedDirection(currentNode, neighbor);
 
-                    // Cálculo de custos do inicio ate aqui, que pode ou não levar curvas em conta
+                    // GCost calculation
                     var gCost = currentNode.GCost + GetDistance(currentNode.Position, neighbor);
                     int nCurves = currentNode.NCurves + (changed ? 1 : 0);
                     var cCost = (changed ? CurvesWeight : 0); // Adiciona 1 nova curva ao peso
@@ -88,6 +115,12 @@
             return null;
         }
 
+        /// <summary>
+        /// Verify if its a curve/turn
+        /// </summary>
+        /// <param name="current"></param>
+        /// <param name="newPoint"></param>
+        /// <returns></returns>
         public bool ChangedDirection(Node current, Point newPoint)
         {
             if (current.Parent == null)
@@ -117,6 +150,11 @@
             return 0;
         }
 
+        /// <summary>
+        /// Return the neighbors
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         private List<Point> GetNeighbors(Point point)
         {
             var neighbors = new List<Point>
@@ -146,6 +184,12 @@
             return neighbors;
         }
 
+        /// <summary>
+        /// Return the distance between two points
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         private double GetDistance(Point a, Point b)
         {
             switch (DistanceType)
@@ -162,6 +206,13 @@
             }
         }
 
+        /// <summary>
+        /// Prepare the result
+        /// </summary>
+        /// <param name="currentNode"></param>
+        /// <param name="openList"></param>
+        /// <param name="closeList"></param>
+        /// <returns></returns>
         private PathfindingResult ReconstructPath(Node currentNode, List<Node> openList, HashSet<Point> closeList)
         {
             var path = new List<Point>();
