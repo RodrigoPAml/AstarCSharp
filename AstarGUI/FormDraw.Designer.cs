@@ -190,16 +190,16 @@
             label1.Name = "label1";
             label1.Size = new Size(168, 17);
             label1.TabIndex = 7;
-            label1.Text = "Dimensões";
+            label1.Text = "Grid Size";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(3, 168);
             label2.Name = "label2";
-            label2.Size = new Size(104, 15);
+            label2.Size = new Size(109, 15);
             label2.TabIndex = 8;
-            label2.Text = "Penalidade Curvas";
+            label2.Text = "Turn/Curve Penalty";
             // 
             // labelRes
             // 
