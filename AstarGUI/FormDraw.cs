@@ -214,7 +214,7 @@ namespace AstarGUI
             labelCurves.Text = $"Curves: {path.Curves}";
 
             // Nos a visitar
-            if(checkBoxOpen.Checked)
+            if (checkBoxOpen.Checked)
             {
                 foreach (var point in path.OpenedNodes)
                 {
@@ -246,6 +246,11 @@ namespace AstarGUI
             final = new Point(1, 1);
             _drawer.Clear();
             panel.Invalidate();
+        }
+
+        private void btnTutorial_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("1 - To set initial point\n2 - To set final point\nMouse click - To set an obstacle\nBackspace + Click - to remove an abstacle");
         }
     }
 }

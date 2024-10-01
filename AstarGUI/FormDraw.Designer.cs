@@ -46,6 +46,7 @@
             checkBoxOpen = new CheckBox();
             checkBoxClosed = new CheckBox();
             comboBoxDistance = new ComboBox();
+            btnTutorial = new Button();
             panel = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -67,7 +68,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(776, 426);
+            tableLayoutPanel1.Size = new Size(776, 491);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -75,29 +76,31 @@
             tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(numericColumns, 0, 12);
-            tableLayoutPanel2.Controls.Add(btnReset, 0, 13);
-            tableLayoutPanel2.Controls.Add(checkDiagonal, 0, 9);
-            tableLayoutPanel2.Controls.Add(btnFind, 0, 14);
-            tableLayoutPanel2.Controls.Add(labelResult, 0, 15);
-            tableLayoutPanel2.Controls.Add(numericCurves, 0, 8);
-            tableLayoutPanel2.Controls.Add(numericRows, 0, 11);
-            tableLayoutPanel2.Controls.Add(label1, 0, 10);
-            tableLayoutPanel2.Controls.Add(label2, 0, 7);
+            tableLayoutPanel2.Controls.Add(numericColumns, 0, 13);
+            tableLayoutPanel2.Controls.Add(btnReset, 0, 14);
+            tableLayoutPanel2.Controls.Add(checkDiagonal, 0, 10);
+            tableLayoutPanel2.Controls.Add(btnFind, 0, 15);
+            tableLayoutPanel2.Controls.Add(labelResult, 0, 16);
+            tableLayoutPanel2.Controls.Add(numericCurves, 0, 9);
+            tableLayoutPanel2.Controls.Add(numericRows, 0, 12);
+            tableLayoutPanel2.Controls.Add(label1, 0, 11);
+            tableLayoutPanel2.Controls.Add(label2, 0, 8);
             tableLayoutPanel2.Controls.Add(labelRes, 0, 3);
             tableLayoutPanel2.Controls.Add(labelCurves, 0, 0);
             tableLayoutPanel2.Controls.Add(labelOpen, 0, 1);
             tableLayoutPanel2.Controls.Add(labelClose, 0, 2);
-            tableLayoutPanel2.Controls.Add(checkBoxOpen, 0, 6);
-            tableLayoutPanel2.Controls.Add(checkBoxClosed, 0, 5);
-            tableLayoutPanel2.Controls.Add(comboBoxDistance, 0, 4);
+            tableLayoutPanel2.Controls.Add(checkBoxOpen, 0, 7);
+            tableLayoutPanel2.Controls.Add(checkBoxClosed, 0, 6);
+            tableLayoutPanel2.Controls.Add(comboBoxDistance, 0, 5);
+            tableLayoutPanel2.Controls.Add(btnTutorial, 0, 4);
             tableLayoutPanel2.Location = new Point(599, 3);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 16;
+            tableLayoutPanel2.RowCount = 17;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 57F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 33F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
@@ -110,13 +113,13 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(174, 420);
+            tableLayoutPanel2.Size = new Size(174, 485);
             tableLayoutPanel2.TabIndex = 1;
             // 
             // numericColumns
             // 
             numericColumns.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            numericColumns.Location = new Point(3, 294);
+            numericColumns.Location = new Point(3, 359);
             numericColumns.Name = "numericColumns";
             numericColumns.Size = new Size(168, 23);
             numericColumns.TabIndex = 1;
@@ -125,7 +128,7 @@
             // btnReset
             // 
             btnReset.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnReset.Location = new Point(3, 323);
+            btnReset.Location = new Point(3, 388);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(168, 34);
             btnReset.TabIndex = 3;
@@ -136,7 +139,7 @@
             // checkDiagonal
             // 
             checkDiagonal.AutoSize = true;
-            checkDiagonal.Location = new Point(3, 219);
+            checkDiagonal.Location = new Point(3, 284);
             checkDiagonal.Name = "checkDiagonal";
             checkDiagonal.Size = new Size(133, 19);
             checkDiagonal.TabIndex = 4;
@@ -146,7 +149,7 @@
             // btnFind
             // 
             btnFind.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnFind.Location = new Point(3, 363);
+            btnFind.Location = new Point(3, 428);
             btnFind.Name = "btnFind";
             btnFind.Size = new Size(168, 34);
             btnFind.TabIndex = 0;
@@ -158,17 +161,17 @@
             // 
             labelResult.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             labelResult.AutoSize = true;
-            labelResult.Location = new Point(3, 400);
+            labelResult.Location = new Point(3, 465);
             labelResult.Name = "labelResult";
             labelResult.Size = new Size(168, 20);
             labelResult.TabIndex = 5;
-            labelResult.Text = "Click search to start";
+            labelResult.Text = "click search to start";
             // 
             // numericCurves
             // 
             numericCurves.DecimalPlaces = 2;
             numericCurves.Dock = DockStyle.Left;
-            numericCurves.Location = new Point(3, 189);
+            numericCurves.Location = new Point(3, 254);
             numericCurves.Name = "numericCurves";
             numericCurves.Size = new Size(168, 23);
             numericCurves.TabIndex = 6;
@@ -176,7 +179,7 @@
             // numericRows
             // 
             numericRows.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            numericRows.Location = new Point(3, 261);
+            numericRows.Location = new Point(3, 326);
             numericRows.Name = "numericRows";
             numericRows.Size = new Size(168, 23);
             numericRows.TabIndex = 2;
@@ -186,7 +189,7 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(3, 241);
+            label1.Location = new Point(3, 306);
             label1.Name = "label1";
             label1.Size = new Size(168, 17);
             label1.TabIndex = 7;
@@ -195,7 +198,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 168);
+            label2.Location = new Point(3, 233);
             label2.Name = "label2";
             label2.Size = new Size(109, 15);
             label2.TabIndex = 8;
@@ -239,7 +242,7 @@
             checkBoxOpen.AutoSize = true;
             checkBoxOpen.Checked = true;
             checkBoxOpen.CheckState = CheckState.Checked;
-            checkBoxOpen.Location = new Point(3, 144);
+            checkBoxOpen.Location = new Point(3, 209);
             checkBoxOpen.Name = "checkBoxOpen";
             checkBoxOpen.Size = new Size(120, 19);
             checkBoxOpen.TabIndex = 13;
@@ -251,7 +254,7 @@
             checkBoxClosed.AutoSize = true;
             checkBoxClosed.Checked = true;
             checkBoxClosed.CheckState = CheckState.Checked;
-            checkBoxClosed.Location = new Point(3, 118);
+            checkBoxClosed.Location = new Point(3, 183);
             checkBoxClosed.Name = "checkBoxClosed";
             checkBoxClosed.Size = new Size(127, 19);
             checkBoxClosed.TabIndex = 14;
@@ -262,17 +265,29 @@
             // 
             comboBoxDistance.FormattingEnabled = true;
             comboBoxDistance.Items.AddRange(new object[] { "Manhattan", "Chebyshev", "Euclidean" });
-            comboBoxDistance.Location = new Point(3, 89);
+            comboBoxDistance.Location = new Point(3, 153);
             comboBoxDistance.Name = "comboBoxDistance";
-            comboBoxDistance.Size = new Size(121, 23);
+            comboBoxDistance.Size = new Size(168, 23);
             comboBoxDistance.TabIndex = 15;
+            // 
+            // btnTutorial
+            // 
+            btnTutorial.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnTutorial.DialogResult = DialogResult.Continue;
+            btnTutorial.Location = new Point(3, 120);
+            btnTutorial.Name = "btnTutorial";
+            btnTutorial.Size = new Size(168, 27);
+            btnTutorial.TabIndex = 16;
+            btnTutorial.Text = "How to use";
+            btnTutorial.UseVisualStyleBackColor = true;
+            btnTutorial.Click += btnTutorial_Click;
             // 
             // panel
             // 
             panel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel.Location = new Point(3, 3);
             panel.Name = "panel";
-            panel.Size = new Size(590, 420);
+            panel.Size = new Size(590, 485);
             panel.TabIndex = 2;
             panel.TabStop = false;
             panel.SizeChanged += panel_SizeChanged;
@@ -283,7 +298,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 515);
             Controls.Add(tableLayoutPanel1);
             Name = "FormDraw";
             Text = " Astar";
@@ -318,5 +333,6 @@
         private CheckBox checkBoxOpen;
         private CheckBox checkBoxClosed;
         private ComboBox comboBoxDistance;
+        private Button btnTutorial;
     }
 }
