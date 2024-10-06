@@ -1,4 +1,4 @@
-﻿namespace AstarGUI
+﻿namespace AstarGUI.src
 {
     /// <summary>
     /// The GridDrawer class is responsible for rendering a 2D grid where each cell can be filled with a specific color.
@@ -153,6 +153,30 @@
                 for (int j = 0; j <= Cols; j++)
                 {
                     g.DrawLine(pen, j * CellSize, 0, j * CellSize, Rows * CellSize);  // Vertical lines
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws a number inside the specified cell in the grid.
+        /// </summary>
+        /// <param name="g">The Graphics object used to draw the number.</param>
+        /// <param name="row">The row index of the cell.</param>
+        /// <param name="col">The column index of the cell.</param>
+        /// <param name="text">The text to draw inside the cell.</param>
+        /// <param name="font">The font used to draw the number.</param>
+        /// <param name="color">The color of the number text.</param>
+        public void DrawText(Graphics g, int row, int col, string text, Font font, Color color)
+        {
+            if (row >= 0 && row < Rows && col >= 0 && col < Cols)
+            {
+                // Calculate the position for the number to be drawn
+                float xPos = col * CellSize + CellSize / 15;
+                float yPos = row * CellSize + CellSize / 15;
+
+                using (Brush textBrush = new SolidBrush(color))
+                {
+                    g.DrawString(text, font, textBrush, xPos, yPos);
                 }
             }
         }

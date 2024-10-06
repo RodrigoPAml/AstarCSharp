@@ -1,4 +1,4 @@
-﻿using Astar.Entities;
+﻿ using Astar.Entities;
 using Astar.Enums;
 using Astar.Interfaces;
 
@@ -52,7 +52,7 @@ namespace Astar
         /// <param name="initial"></param>
         /// <param name="final"></param>
         /// <returns></returns>
-        public PathfindingResult? FindPath(Point initial, Point final)
+        public PathfindingResult FindPath(Point initial, Point final)
         {
             timer = DateTime.UtcNow;
 
@@ -60,7 +60,7 @@ namespace Astar
             var openList = new List<Node>();
 
             // Visited nodes
-            var closedList = new HashSet<Point>();
+            var closedList = new HashSet<Node>();
 
             // Initial node
             openList.Add(new Node(initial, null, 0, GetDistance(initial, final), 0));
@@ -74,15 +74,15 @@ namespace Astar
 
                 // Reach final position, return the path
                 if (currentNode.Position.X == final.X && currentNode.Position.Y == final.Y)
-                    return ReconstructPath(currentNode, openList, closedList);
+                     return ReconstructPath(currentNode, openList, closedList);
 
                 openList.Remove(currentNode);
-                closedList.Add(currentNode.Position);
+                closedList.Add(currentNode);
 
                 // Verify neighbors
                 foreach (var neighbor in GetNeighbors(currentNode.Position))
                 {
-                    if (closedList.Any(p => neighbor.X == p.X && neighbor.Y == p.Y) || Obstacles.Any(o => o.Intersects(neighbor)))
+                    if (closedList.Any(p => neighbor.X == p.Position.X && neighbor.Y == p.Position.Y) || Obstacles.Any(o => o.Intersects(neighbor)))
                         continue;
 
                     // Verify if turned or have a curve in the path
@@ -213,14 +213,14 @@ namespace Astar
         /// <param name="openList"></param>
         /// <param name="closeList"></param>
         /// <returns></returns>
-        private PathfindingResult ReconstructPath(Node currentNode, List<Node> openList, HashSet<Point> closeList)
+        private PathfindingResult ReconstructPath(Node currentNode, List<Node> openList, HashSet<Node> closeList)
         {
-            var path = new List<Point>();
+            var path = new List<Node>();
             var ncurves = currentNode?.NCurves ?? 0;
 
             while (currentNode != null)
             {
-                path.Add(currentNode.Position);
+                path.Add(currentNode);
                 currentNode = currentNode.Parent;
             }
 
@@ -229,7 +229,7 @@ namespace Astar
             return new PathfindingResult()
             {
                 ClosedNodes = closeList.ToList(),
-                OpenedNodes = openList.Select(x => x.Position).ToList(),
+                OpenedNodes = openList,
                 Path = path,
                 TimeElapsed = (DateTime.UtcNow - timer).TotalMilliseconds,
                 Curves = ncurves,

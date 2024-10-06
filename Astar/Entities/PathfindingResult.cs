@@ -8,17 +8,17 @@
         /// <summary>
         /// The path from the initial to final node
         /// </summary>
-        public List<Point> Path { get; set; } = new List<Point>();
+        public List<Node> Path { get; set; } = new List<Node>();
 
         /// <summary>
         /// Visited nodes
         /// </summary>
-        public List<Point> ClosedNodes { get; set; } = new List<Point>();
+        public List<Node> ClosedNodes { get; set; } = new List<Node>();
 
         /// <summary>
         /// Nodes to visit
         /// </summary>
-        public List<Point> OpenedNodes { get; set; } = new List<Point>();
+        public List<Node> OpenedNodes { get; set; } = new List<Node>();
 
         /// <summary>
         /// Execution time

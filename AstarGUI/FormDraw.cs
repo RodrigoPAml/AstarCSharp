@@ -1,7 +1,9 @@
 using Astar;
+using Astar.Entities;
 using Astar.Enums;
 using Astar.Interfaces;
 using Astar.Obstacles;
+using AstarGUI.src;
 using Point = Astar.Entities.Point;
 
 namespace AstarGUI
@@ -24,6 +26,10 @@ namespace AstarGUI
         private Point mousePos = new Point(0, 0);
 
         private DistanceTypeEnum distanceType = DistanceTypeEnum.Manhattan;
+
+        private ShowCostsEnum showCost = ShowCostsEnum.Show;
+
+        private PathfindingResult result = null;
 
         public FormDraw()
         {
@@ -67,6 +73,43 @@ namespace AstarGUI
             _drawer.SetColor(initial.X, initial.Y, Color.Green);
             _drawer.SetColor(final.X, final.Y, Color.Red);
 
+            if (result != null)
+            {
+                var toShow = new List<Node>();
+                if (checkBoxOpen.Checked)
+                    toShow.AddRange(result.OpenedNodes);
+
+                if (checkBoxClosed.Checked)
+                    toShow.AddRange(result.ClosedNodes);
+
+                toShow.AddRange(result.Path);
+
+                foreach (var node in toShow)
+                {
+                    string textToDraw = string.Empty;
+                    Color color = Color.Red;
+
+                    if(showCost == ShowCostsEnum.Show)
+                    {
+                        textToDraw = (Math.Truncate(node.FCost*10)/10).ToString();
+                        color = Color.Red;
+                    }
+                    else if (showCost == ShowCostsEnum.ShowG)
+                    {
+                        textToDraw = (Math.Truncate(node.GCost * 10) / 10).ToString();
+                        color = Color.Yellow;
+                    }
+                    else if (showCost == ShowCostsEnum.ShowH)
+                    {
+                        textToDraw = (Math.Truncate(node.HCost * 10) / 10).ToString();
+                        color = Color.Green;
+                    }
+
+                    var font = new Font("Arial", textToDraw.Length <= 2 ? _drawer.CellSize / 2 : _drawer.CellSize / 4);
+                    _drawer.DrawText(g, node.Position.X, node.Position.Y, textToDraw, font, color);
+                }
+            }
+
             foreach (var obstacle in _obstacles)
             {
                 foreach (var point in obstacle.GetPoints())
@@ -108,6 +151,7 @@ namespace AstarGUI
                 if (_obstacles.Any(x => x.Intersects(coord)))
                 {
                     _obstacles = _obstacles.Where(x => !x.Intersects(coord)).ToList();
+                    result = null;
                     _drawer.Clear();
                     panel.Invalidate();
                 }
@@ -131,6 +175,7 @@ namespace AstarGUI
                 }
 
                 initial = coord;
+                result = null;
                 _drawer.Clear();
                 panel.Invalidate();
             }
@@ -148,6 +193,7 @@ namespace AstarGUI
                 }
 
                 final = coord;
+                result = null;
                 _drawer.Clear();
                 panel.Invalidate();
             }
@@ -164,6 +210,8 @@ namespace AstarGUI
                     return;
 
                 _obstacles.Add(obstacle);
+                result = null;
+                _drawer.Clear();
                 panel.Invalidate();
             }
         }
@@ -196,6 +244,7 @@ namespace AstarGUI
             pathfinder.DistanceType = (DistanceTypeEnum)comboBoxDistance.SelectedIndex;
 
             var path = pathfinder.FindPath(initial, final);
+            this.result = path;
 
             if (path == null)
             {
@@ -216,24 +265,24 @@ namespace AstarGUI
             // Nos a visitar
             if (checkBoxOpen.Checked)
             {
-                foreach (var point in path.OpenedNodes)
+                foreach (var node in path.OpenedNodes)
                 {
-                    _drawer.SetColor(point.X, point.Y, Color.LightGray);
+                    _drawer.SetColor(node.Position.X, node.Position.Y, Color.LightGray);
                 }
             }
 
             // Nos visitados
             if (checkBoxClosed.Checked)
             {
-                foreach (var point in path.ClosedNodes)
+                foreach (var node in path.ClosedNodes)
                 {
-                    _drawer.SetColor(point.X, point.Y, Color.LightBlue);
+                    _drawer.SetColor(node.Position.X, node.Position.Y, Color.LightBlue);
                 }
             }
 
-            foreach (var point in path.Path)
+            foreach (var node in path.Path)
             {
-                _drawer.SetColor(point.X, point.Y, Color.Blue);
+                _drawer.SetColor(node.Position.X, node.Position.Y, Color.Blue);
             }
 
             panel.Invalidate();
@@ -251,6 +300,31 @@ namespace AstarGUI
         private void btnTutorial_Click(object sender, EventArgs e)
         {
             MessageBox.Show("1 - To set initial point\n2 - To set final point\nMouse click - To set an obstacle\nBackspace + Click - to remove an abstacle");
+        }
+
+        private void btnNodes_Click(object sender, EventArgs e)
+        {
+            switch(showCost)
+            {
+                case ShowCostsEnum.Show:
+                    showCost = ShowCostsEnum.ShowG;
+                    btnNodes.Text = "Showing nodes g cost";
+                    break;
+                case ShowCostsEnum.ShowG:
+                    showCost = ShowCostsEnum.ShowH;
+                    btnNodes.Text = "Showing nodes h cost";
+                    break;
+                case ShowCostsEnum.ShowH:
+                    showCost = ShowCostsEnum.Hide;
+                    btnNodes.Text = "Hiding costs";
+                    break;
+                case ShowCostsEnum.Hide:
+                    showCost = ShowCostsEnum.Show;
+                    btnNodes.Text = "Showing nodes cost";
+                    break;
+            }
+
+            panel.Invalidate();
         }
     }
 }
