@@ -294,6 +294,7 @@ namespace AstarGUI
             initial = new Point(0, 0);
             final = new Point(1, 1);
             _drawer.Clear();
+            result = null;
             panel.Invalidate();
         }
 
