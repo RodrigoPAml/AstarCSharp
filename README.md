@@ -17,7 +17,7 @@ This can be especially useful in scenarios where smoother or more direct paths a
 - **Efficient Pathfinding:** Standard A* optimization to ensure fast pathfinding while considering penalties and enabling diagonal paths.
 - **Customizable Grid:** Easily set up a grid with start and end points, insert obstacles and choose grid size.
 - **Nodes visualization:** Possibility to see open and close lists, where obstacles are in black, green is the initial node, red is the destiny node, dark blue is the founded path, light gray is the open nodes and light blue is the closed nodes.
-- **Costs visualization:** Possibility to nodes costs.
+- **Costs visualization:** Possibility to see nodes costs (F, G or H cost).
 
 ## How It Works
 
