@@ -6,7 +6,7 @@ The algorithm not only finds the shortest path but also allows for the possibili
 
 This can be especially useful in scenarios where smoother or more direct paths are preferable over the strictly shortest route.
 
-![image](https://github.com/user-attachments/assets/c0f0a43f-4e04-40a7-9882-e6f4e1875a4f)
+![image](https://github.com/user-attachments/assets/f08fc0cb-87d4-43b6-8f06-906799d600c1)
 
 ## Features
 
@@ -17,6 +17,7 @@ This can be especially useful in scenarios where smoother or more direct paths a
 - **Efficient Pathfinding:** Standard A* optimization to ensure fast pathfinding while considering penalties and enabling diagonal paths.
 - **Customizable Grid:** Easily set up a grid with start and end points, insert obstacles and choose grid size.
 - **Nodes visualization:** Possibility to see open and close lists, where obstacles are in black, green is the initial node, red is the destiny node, dark blue is the founded path, light gray is the open nodes and light blue is the closed nodes.
+- **Costs visualization:** Possibility to nodes costs.
 
 ## How It Works
 
@@ -33,8 +34,9 @@ In this modified version of the A* algorithm, the G cost includes an additional 
 
 Here a example with no curve penalty
 
-![image](https://github.com/user-attachments/assets/b1aee403-3756-4b5d-8259-9ed13d8a6f16)
+![image](https://github.com/user-attachments/assets/2fabc7bb-e842-4fb0-a5fc-846527df85e4)
 
 And here is with curve penalty
 
-![image](https://github.com/user-attachments/assets/f094a037-3085-4a9d-874e-1c231e8012e3)
+![image](https://github.com/user-attachments/assets/c6fba28d-17f6-4109-b941-cb14fca6b72d)
+
