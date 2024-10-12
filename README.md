@@ -40,3 +40,7 @@ And here is with curve penalty
 
 ![image](https://github.com/user-attachments/assets/c6fba28d-17f6-4109-b941-cb14fca6b72d)
 
+### Buttons 
+ - Click in the button '1' to put initial node
+ - Click in the button '2' to put final node
+ - Backspace to remove and ob
