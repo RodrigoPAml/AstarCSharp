@@ -11,7 +11,7 @@ This can be especially useful in scenarios where smoother or more direct paths a
 ## Features
 
 - **Turn Penalty:** Adjust the penalty for turns to favor paths with fewer directional changes.
-- **2D Visualization**: A Windows form application was build to show the algorithm running adn mess with parameters
+- **2D Visualization**: A Windows form application was build to show the algorithm running and allow the change of parameters
 - **Flexible Obstacles:** Add obstacles that the algorithm will navigate around.
 - **Choose heuristic algorithm:** Choose the best fitting algorithm via windows form (Chebyshev, Euclidean, Manhattan).
 - **Efficient Pathfinding:** Standard A* optimization to ensure fast pathfinding while considering penalties and enabling diagonal paths.
