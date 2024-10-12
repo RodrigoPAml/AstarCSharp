@@ -11,13 +11,13 @@ This can be especially useful in scenarios where smoother or more direct paths a
 ## Features
 
 - **Turn Penalty:** Adjust the penalty for turns to favor paths with fewer directional changes.
-- **2D Visualization**: A Windows form application was build to show the algorithm running adn mess with parameters
+- **2D Visualization**: A Windows form application was build to show the algorithm running and allow the change of parameters
 - **Flexible Obstacles:** Add obstacles that the algorithm will navigate around.
 - **Choose heuristic algorithm:** Choose the best fitting algorithm via windows form (Chebyshev, Euclidean, Manhattan).
 - **Efficient Pathfinding:** Standard A* optimization to ensure fast pathfinding while considering penalties and enabling diagonal paths.
 - **Customizable Grid:** Easily set up a grid with start and end points, insert obstacles and choose grid size.
 - **Nodes visualization:** Possibility to see open and close lists, where obstacles are in black, green is the initial node, red is the destiny node, dark blue is the founded path, light gray is the open nodes and light blue is the closed nodes.
-- **Costs visualization:** Possibility to nodes costs.
+- **Costs visualization:** Possibility to see nodes costs (F, G or H cost).
 
 ## How It Works
 
@@ -40,3 +40,7 @@ And here is with curve penalty
 
 ![image](https://github.com/user-attachments/assets/c6fba28d-17f6-4109-b941-cb14fca6b72d)
 
+### Buttons 
+ - Click in the button '1' to put initial node
+ - Click in the button '2' to put final node
+ - Backspace to remove and ob
