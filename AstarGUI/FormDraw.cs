@@ -15,9 +15,9 @@ namespace AstarGUI
     {
         private GridDrawer _drawer = null;
 
-        private bool isMouseDown = false;
-
         private List<IObstacle> _obstacles = new List<IObstacle>();
+
+        private bool isMouseDown = false;
 
         private Point initial = new Point(0, 0);
 
@@ -123,7 +123,7 @@ namespace AstarGUI
         {
             isMouseDown = true;
             PaintCellIfMouseClicked(e.X, e.Y);
-            RemoveInputsFocus();
+            btnFind.Focus();
         }
 
         private void panel_MouseUp(object sender, MouseEventArgs e)
@@ -137,9 +137,12 @@ namespace AstarGUI
             PaintCellIfMouseClicked(e.X, e.Y);
         }
 
-        private void RemoveInputsFocus()
+        private void Reset()
         {
-            btnFind.Focus();
+            result = null;
+
+            _drawer?.Clear();
+            panel.Invalidate();
         }
 
         private void FormDraw_KeyDown(object sender, KeyEventArgs e)
@@ -151,9 +154,7 @@ namespace AstarGUI
                 if (_obstacles.Any(x => x.Intersects(coord)))
                 {
                     _obstacles = _obstacles.Where(x => !x.Intersects(coord)).ToList();
-                    result = null;
-                    _drawer.Clear();
-                    panel.Invalidate();
+                    Reset();
                 }
 
                 return;
@@ -175,9 +176,7 @@ namespace AstarGUI
                 }
 
                 initial = coord;
-                result = null;
-                _drawer.Clear();
-                panel.Invalidate();
+                Reset();
             }
 
             if (e.KeyCode == Keys.D2)
@@ -193,9 +192,7 @@ namespace AstarGUI
                 }
 
                 final = coord;
-                result = null;
-                _drawer.Clear();
-                panel.Invalidate();
+                Reset();
             }
         }
 
@@ -210,9 +207,7 @@ namespace AstarGUI
                     return;
 
                 _obstacles.Add(obstacle);
-                result = null;
-                _drawer.Clear();
-                panel.Invalidate();
+                Reset();
             }
         }
 
@@ -226,13 +221,13 @@ namespace AstarGUI
         private void numericRows_ValueChanged(object sender, EventArgs e)
         {
             _drawer?.SetGridSize((int)numericRows.Value, (int)numericColumns.Value);
-            panel.Invalidate();
+            Reset();
         }
 
         private void numericColumns_ValueChanged(object sender, EventArgs e)
         {
             _drawer?.SetGridSize((int)numericRows.Value, (int)numericColumns.Value);
-            panel.Invalidate();
+            Reset();
         }
 
         private void btnFind_Click(object sender, EventArgs e)
@@ -293,9 +288,7 @@ namespace AstarGUI
             _obstacles = new List<IObstacle>();
             initial = new Point(0, 0);
             final = new Point(1, 1);
-            _drawer.Clear();
-            result = null;
-            panel.Invalidate();
+            Reset();
         }
 
         private void btnTutorial_Click(object sender, EventArgs e)
