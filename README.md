@@ -43,4 +43,4 @@ And here is with curve penalty
 ### Buttons 
  - Click in the button '1' to put initial node
  - Click in the button '2' to put final node
- - Backspace to remove and ob
+ - Click to insert obstacle and click+backspace to remove obstacle
